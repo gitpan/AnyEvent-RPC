@@ -24,15 +24,14 @@ no_index:
 provides:
   AnyEvent::RPC:
     file: lib/AnyEvent/RPC.pm
-    version: 0.04
+    version: 0.05
   AnyEvent::RPC::Enc::REST:
     file: lib/AnyEvent/RPC/Enc/REST.pm
-    version: 0.03
+    version: 0.04
   AnyEvent::RPC::Enc::YAML:
     file: lib/AnyEvent/RPC/Enc/YAML.pm
-    version: 0.03
+    version: 0.04
 recommends:
-  XML::Hash::LX: 0.05
   YAML::Syck: 0
 requires:
   AnyEvent: 5
@@ -40,9 +39,10 @@ requires:
   HTTP::Headers: 0
   HTTP::Response: 0
   URI: 0
+  XML::Hash::LX: 0.05
   common::sense: 2
   parent: 0
   perl: 5.6.0
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.04
+version: 0.05

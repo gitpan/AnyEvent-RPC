@@ -17,7 +17,7 @@ requires 'URI';
 requires 'HTTP::Response';
 requires 'HTTP::Headers';
 #recommends 'XML::Fast', '0.01';
-recommends 'XML::Hash::LX', '0.05';
+requires 'XML::Hash::LX', '0.05';
 recommends 'YAML::Syck';
 
 auto_provides;

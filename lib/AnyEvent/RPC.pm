@@ -13,7 +13,7 @@ AnyEvent::RPC - Abstract framework for Asyncronous RPC clients
 
 =cut
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 =head1 SYNOPSIS
 
@@ -61,7 +61,7 @@ sub init {
 	);
 	@$self{keys %args} = values %args;
 	$self->{$_} or croak "$_ not defined" for qw(host);
-	$self->{useragent} //= 'AnyEvent::RPC/'.$AnyEvent::RPC::VERSION;
+	$self->{useragent} ||= 'AnyEvent::RPC/'.$AnyEvent::RPC::VERSION;
 	return;
 }
 
@@ -77,7 +77,7 @@ sub components {
 	unless ( ref $self->{ua} ) {
 		$self->{ua} = $self->_load(
 			'::UA', $self->{ua}, '',
-			ua      => $self->{useragent} // $package.'/'.( do{ no strict 'refs'; ${$package.'::VERSION'} } // $VERSION ),
+			ua      => $self->{useragent} || $package.'/'.( do{ no strict 'refs'; ${$package.'::VERSION'} } || $VERSION ),
 			timeout => $self->{timeout},
 			debug => $self->{debug},
 		);
@@ -118,7 +118,7 @@ sub req {
 	my @data;
 	#warn "Call $body";
 	$self->ua->call(
-		($args{method} // $req{method} // 'POST') => $req{uri},
+		($args{method} || $req{method} || 'POST') => $req{uri},
 		headers => {
 			exists $req{headers} ? ( %{$req{headers}} ) : (),
 			exists $args{headers} ? ( %{$args{headers}} ) : (),

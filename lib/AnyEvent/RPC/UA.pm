@@ -28,7 +28,7 @@ sub init {
 	my $self = shift;
 	my %args = @_;
 	@$self{keys %args} = values %args;
-	$self->{ua} //= 'AnyEvent::RPC/'.$VERSION;
+	$self->{ua} ||= 'AnyEvent::RPC/'.$VERSION;
 }
 
 sub call {
